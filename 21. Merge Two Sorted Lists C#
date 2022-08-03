@@ -1,0 +1,49 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+
+    public ListNode MergeTwoLists(ListNode list1, ListNode list2) {
+    
+        if (list1 == null) return list2;
+        if (list2 == null) return list1; 
+        
+        var newHead = new ListNode(-1);
+        var runner = newHead;
+        
+        while (list1 != null && list2 !=null){
+            if(list1.val >= list2.val){
+                runner.next = list2;
+                list2 = list2.next;
+            }
+            else{
+                runner.next = list1;
+                list1 = list1.next;
+            }
+            
+            runner = runner.next;
+        }
+        
+        // Add the 'leftover' at the end 
+        if (list1 == null){
+            runner.next = list2;
+        }else{
+            runner.next = list1;
+        }
+        
+        return newHead.next;
+    }
+}
+
+Time and space complexities: O(n+m), where n and m are the sizes of the two input linked lists.
+
+Runtime: 137 ms, faster than 37.25% of C# online submissions for Merge Two Sorted Lists.
+Memory Usage: 38.1 MB, less than 41.12% of C# online submissions for Merge Two Sorted Lists.
