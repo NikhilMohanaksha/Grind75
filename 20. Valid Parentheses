@@ -1,0 +1,29 @@
+public class Solution {
+
+    public bool IsValid(string s) {
+    
+        if(s.Length % 2 != 0) return false;
+        
+        Stack<Char> stack = new Stack<Char>();
+        
+        foreach(char c in s.ToCharArray()) {
+            if(c == ')' && !(stack.Count == 0) && stack.Peek() == '(') {
+                stack.Pop();
+            }else if(c == '}' && !(stack.Count == 0) && stack.Peek() == '{') {
+                stack.Pop();
+            }else if(c == ']' && !(stack.Count == 0) && stack.Peek() == '[') {
+                stack.Pop();
+            }else{
+                stack.Push(c);
+            }
+        }
+        
+        return (stack.Count == 0);
+    }
+}
+
+Time Complexity : O(n)
+Space Complexity : O(n)
+
+Runtime: 101 ms, faster than 65.13% of C# online submissions for Valid Parentheses.
+Memory Usage: 36.7 MB, less than 41.27% of C# online submissions for Valid Parentheses.
