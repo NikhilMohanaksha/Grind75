@@ -1,0 +1,30 @@
+Sliding Window Technique:
+
+public class Solution {
+
+    public int MaxProfit(int[] prices) {
+    
+        int start = 0;
+        int end = 1;
+        int maxProfit = 0;
+        
+        if (prices.Length == 1) return 0;
+        
+        while (end < prices.Length){
+            if (prices[start] < prices[end]){
+                maxProfit = Math.Max(maxProfit, (prices[end] - prices[start]));
+            }
+            else{
+                start = end;
+            }
+            end++;
+        }
+        
+        return maxProfit;
+    }
+}
+
+Time & Space Complexity will be O(n)
+
+Runtime: 327 ms, faster than 67.56% of C# online submissions for Best Time to Buy and Sell Stock.
+Memory Usage: 47.2 MB, less than 38.01% of C# online submissions for Best Time to Buy and Sell Stock.
